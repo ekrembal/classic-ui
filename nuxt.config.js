@@ -79,7 +79,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://tornado.ws'
+        content: '1.torndao.eth.limo'
       },
       {
         hid: 'og:type',
@@ -89,7 +89,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://tornado.ws/tw.png'
+        content: '1.torndao.eth.limo/tw.png'
       },
       {
         hid: 'description',

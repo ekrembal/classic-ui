@@ -23,9 +23,9 @@ function main(store) {
       window.multipleTabsDetected = true
       window.onbeforeunload = null
       window.alert(
-        'Multiple tabs opened. Your page will be closed. Please only use single instance of https://tornado.ws'
+        'Multiple tabs opened. Your page will be closed. Please only use single instance of https://1.torndao.eth.limo/'
       )
-      window.location = 'https://t.me/TornadoOfficial'
+      window.location = 'https://t.me/TornadoCashOfficialDAO'
     }
   }
 

@@ -92,6 +92,23 @@
         </p>
       </div>
     </template>
+    <div class="field">
+      <b-field label="Graph ApiKey" class="has-custom-field"> </b-field>
+      <div class="field has-custom-field">
+        <b-input
+          ref="graphInput"
+          v-model="graphApiKey"
+          type="text"
+          placeholder="Paste your graph ApiKey"
+          :custom-class="hasErrorGraphApiKey.type"
+          :use-html5-validation="false"
+          @input="checkGraphApiKey"
+        ></b-input>
+      </div>
+      <p v-if="hasErrorGraphApiKey.msg" class="help" :class="hasErrorGraphApiKey.type">
+        {{ hasErrorGraphApiKey.msg }}
+      </p>
+    </div>
     <div class="buttons buttons__halfwidth">
       <b-button type="is-primary" outlined data-test="button_reset_rpc" @mousedown.prevent @click="onReset">
         {{ $t('reset') }}
@@ -121,8 +138,10 @@ export default {
       checkingRpc: false,
       hasErrorRpc: { type: '', msg: '' },
       hasErrorEthRpc: { type: '', msg: '' },
+      hasErrorGraphApiKey: { type: '', msg: '' },
       customRpcUrl: '',
       customEthUrl: '',
+      graphApiKey: '',
       selectedRpc: 'custom',
       selectedEthRpc: 'custom',
       rpc: { name: 'custom', url: '' },
@@ -148,7 +167,10 @@ export default {
     },
     isDisabledSave() {
       return (
-        this.hasErrorRpc.type === 'is-warning' || this.checkingRpc || (this.isCustomRpc && !this.customRpcUrl)
+        this.hasErrorRpc.type === 'is-warning' ||
+        this.checkingRpc ||
+        (this.isCustomRpc && !this.customRpcUrl) ||
+        this.hasErrorGraphApiKey.type === 'is-warning'
       )
     }
   },
@@ -168,6 +190,11 @@ export default {
         this.customEthRpcUrl = this.ethRpc.url
       })
     }
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    const customApiKey = window.localStorage.getItem('graphApiKey')
+    if (customApiKey) {
+      this.graphApiKey = customApiKey
+    }
 
     this.checkRpc(this.rpc)
     this.checkEthRpc(this.ethRpc)
@@ -176,7 +203,9 @@ export default {
     ...mapMutations('settings', ['SAVE_RPC']),
     onReset() {
       this.checkingRpc = false
+      this.graphApiKey = ''
       this.hasErrorRpc = { type: '', msg: '' }
+      this.hasErrorGraphApiKey = { type: '', msg: '' }
 
       this.rpc = Object.entries(this.networkConfig.rpcUrls)[0][1]
       this.ethRpc = Object.entries(this.ethNetworkConfig.rpcUrls)[0][1]
@@ -190,6 +219,7 @@ export default {
       if (this.netId !== 1) {
         this.SAVE_RPC({ ...this.ethRpc, netId: 1 })
       }
+      window.localStorage.setItem('graphApiKey', this.graphApiKey)
       this.$emit('close')
     },
     onCancel() {
@@ -229,6 +259,21 @@ export default {
         return
       }
       debounce(this._checkEthRpc, { name: 'custom', url: trimmedUrl })
+    },
+    checkGraphApiKey(strApiKey) {
+      const apiKey = strApiKey.trim()
+      if (!apiKey) {
+        this.hasErrorGraphApiKey = { type: '', msg: '' }
+        return
+      }
+      if (apiKey.length === 32) {
+        const hexRegex = /^[0-9a-fA-F]+$/
+        if (hexRegex.test(apiKey)) {
+          this.hasErrorGraphApiKey = { type: '', msg: '' }
+          return
+        }
+      }
+      this.hasErrorGraphApiKey = { type: 'is-warning', msg: 'invalid' }
     },
     async _checkRpc({ name, url }) {
       this.checkingRpc = true

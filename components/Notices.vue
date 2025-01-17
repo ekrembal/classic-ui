@@ -18,9 +18,7 @@
         </template>
         <template v-slot:description>{{ notice.description }}</template>
       </i18n>
-      <a v-if="notice.nova" href="https://nova.tornado.ws/" target="_blank" rel="noopener noreferrer">
-        Tornado Cash Nova
-      </a>
+
       <a
         v-if="notice.txHash"
         :href="txExplorerUrl(notice.txHash)"

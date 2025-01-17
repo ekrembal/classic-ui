@@ -14,20 +14,45 @@ const isEmptyArray = (arr) => !Array.isArray(arr) || !arr.length
 
 const first = 1000
 
+const APIKEY_URLS = {
+  1: '8b164501e1862078eff5fb9dda136c6c',
+  10: 'd2db349f28c895aa2272421996404c8d',
+  56: '30503850823438e04497429381e416f7',
+  100: 'd2db349f28c895aa2272421996404c8d',
+  137: 'd2db349f28c895aa2272421996404c8d',
+  42161: 'd2db349f28c895aa2272421996404c8d',
+  43114: 'd2db349f28c895aa2272421996404c8d',
+  11155111: 'd2db349f28c895aa2272421996404c8d',
+  88888888: 'c978a2a9a36f30ba63457b707e821e6c'
+}
+
+function getApiKey(chainId) {
+  const customApiKey = window.localStorage.getItem('graphApiKey')
+  if (customApiKey) {
+    return customApiKey
+  }
+  return APIKEY_URLS[chainId]
+}
+
 const link = ({ getContext }) => {
   const { chainId } = getContext()
-  return CHAIN_GRAPH_URLS[chainId]
+  return CHAIN_GRAPH_URLS[chainId].replace('{apiKey}', getApiKey(chainId))
+}
+
+const registryLink = () => {
+  return CHAIN_GRAPH_URLS[88888888].replace('{apiKey}', getApiKey(88888888))
 }
 
 const CHAIN_GRAPH_URLS = {
-  1: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/mainnet-tornado-subgraph',
-  10: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/optimism-tornado-subgraph',
-  56: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/bsc-tornado-subgraph',
-  100: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/xdai-tornado-subgraph',
-  137: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/matic-tornado-subgraph',
-  42161: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/arbitrum-tornado-subgraph',
-  43114: 'https://api.thegraph.com/subgraphs/name/tornadocash/avalanche-tornado-subgraph',
-  11155111: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/sepolia-tornado-subgraph'
+  1: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/Ec6fVMDVqXTDQZ3c4jxcyV3zBXqkdgMWfhdtCgtqn7Sh',
+  10: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/GvkbnEVhLD6KArXpEzLFtSKRmspBW29ApKFqR5FjuP2P',
+  56: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/CiwGzefDBZCavXRPnwarnnF8xDDoLw4boBuySomJWYnV',
+  100: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/F1m8vxuGatCBRvP8fPnnWUJ1oK7kfE1DGdRacqoamLjF',
+  137: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/HUMgwMYNrPQpnBJgesFXyy5u6jSiJ6u5nNWQng9ayCmD',
+  42161: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/8x8o6XFAqYZmiPwrJ51UxGTaZLYyW1fFtghvsEy7a1KJ',
+  43114: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/CqUYVKJT9Jsyt7qnGNrf4FJNHw75ZbFGuzaJgqdaFASo',
+  11155111: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/8kJGz92AYUm72wfyUoze1as3E11ynDSTZM8emiRWrRPy',
+  88888888: 'https://gateway.thegraph.com/api/{apiKey}/subgraphs/id/DgKwfAbLfynpiq7fDJy59LDnVnia4Y5nYeRDBYi9qezc'
 }
 
 const defaultOptions = {
@@ -45,7 +70,7 @@ const client = new ApolloClient({
 })
 
 const registryClient = new ApolloClient({
-  uri: 'https://tornadocash-rpc.com/subgraphs/name/tornadocash/tornado-relayer-registry',
+  uri: registryLink,
   cache: new InMemoryCache(),
   credentials: 'omit',
   defaultOptions

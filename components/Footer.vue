@@ -37,18 +37,26 @@
                 <b-button
                   tag="a"
                   type="is-icon"
-                  href="https://t.me/tornadoofficial"
+                  href="https://tornado-cash.medium.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  icon-right="telegram"
+                  icon-right="medium"
                 ></b-button>
                 <b-button
                   tag="a"
                   type="is-icon"
-                  href="https://git.tornado.ws/tornadocash/classic-ui"
+                  href="https://twitter.com/TornadoCash"
                   target="_blank"
                   rel="noopener noreferrer"
-                  icon-right="git"
+                  icon-right="twitter"
+                ></b-button>
+                <b-button
+                  tag="a"
+                  type="is-icon"
+                  href="https://t.me/TornadoCashOfficialDAO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  icon-right="telegram"
                 ></b-button>
                 <b-button
                   tag="a"
@@ -109,13 +117,13 @@ export default {
     ...mapGetters('metamask', ['networkConfig', 'netId']),
     ...mapGetters('txHashKeeper', ['addressExplorerUrl']),
     duneLink() {
-      const mainnetNetworks = [1]
+      const mainnetNetworks = [1, 5]
 
       if (mainnetNetworks.includes(Number(this.netId))) {
-        return 'https://dune.xyz/poma/tornado-cash_1'
+        return 'https://dune.com/davidcaviar/tornado-cash'
       }
 
-      return 'https://dune.xyz/fennec/Tornado-Cash-Cross-chain-Dashboard'
+      return 'https://dune.com/stakingbutterfly/tornado-cash-staking'
     },
     locales() {
       return this.$i18n.availableLocales

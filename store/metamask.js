@@ -532,13 +532,13 @@ const actions = {
       100: {
         chainId: '0x64',
         chainName: 'Gnosis',
-        rpcUrls: ['https://development.tornadocash.community/rpc/v1'],
+        rpcUrls: ['https://rpc.gnosischain.com'],
         nativeCurrency: {
           name: 'xDAI',
           symbol: 'xDAI',
           decimals: 18
         },
-        blockExplorerUrls: ['https://blockscout.com/xdai/mainnet']
+        blockExplorerUrls: ['https://gnosisscan.io']
       },
       137: {
         chainId: '0x89',

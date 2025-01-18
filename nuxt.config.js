@@ -79,7 +79,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: '1.torndao.eth.limo'
+        content: '2.torndao.eth.limo'
       },
       {
         hid: 'og:type',
@@ -89,7 +89,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '1.torndao.eth.limo/tw.png'
+        content: '2.torndao.eth.limo/tw.png'
       },
       {
         hid: 'description',

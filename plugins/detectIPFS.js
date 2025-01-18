@@ -6,9 +6,8 @@ function main() {
   const whiteListedDomains = [
     'tornadocash.eth.link',
     'tornadocash.eth.limo',
-    'torndao.eth.link',
-    'torndao.eth.limo',
-    '1.torndao.eth.limo'
+    '2.torndao.eth.link',
+    '2.torndao.eth.limo'
   ]
 
   const IPFS_GATEWAY_REGEXP = /.ipfs./

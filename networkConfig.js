@@ -86,8 +86,7 @@ export default {
         decimals: 8,
         gasLimit: '425000'
       },
-      /**
-       * Instances frozen due to sanctions
+
       usdc: {
         instanceAddress: {
           '100': '0xd96f2B1c14Db8458374d9Aca76E26c3D18364307',
@@ -108,7 +107,7 @@ export default {
         decimals: 6,
         gasLimit: '100000'
       },
-      **/
+
       wbtc: {
         instanceAddress: {
           '0.1': '0x178169B423a011fff22B9e3F3abeA13414dDD0F1',

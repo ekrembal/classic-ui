@@ -44,7 +44,7 @@ export default {
     fallback: true
   },
   head: {
-    title: 'Tornado.cash',
+    title: 'Tornado Cash Official - Secure, Decentralized, Private protocol',
     meta: [
       { charset: 'utf-8' },
       {
@@ -64,22 +64,24 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Non-custodial Ethereum Privacy solution.'
+        content:
+          'A fully decentralized protocol for private transactions on Ethereum, BSC(BNBChain), Optimism, Polygon, Avalanche, Arbitrum, Gnosis networks.'
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'Tornado.Cash'
+        content: 'Tornado Cash Official - Secure, Decentralized, Private protocol'
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: 'Non-custodial, trustless, serverless, private transactions on Ethereum network'
+        content:
+          'A secure, anonymous, decentralized private protocol. Protect your funds with zk-SNARKs privacy tech.'
       },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: '2.torndao.eth.limo'
+        content: 'tornadocash.eth.limo'
       },
       {
         hid: 'og:type',
@@ -89,18 +91,13 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '2.torndao.eth.limo/tw.png'
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Non-custodial, trustless, serverless, private transactions on Ethereum network'
+        content: 'tornadocash.eth.limo/tw.png'
       },
       {
         hid: 'keywords',
         name: 'keywords',
         content:
-          'Tornado, Ethereum, ERC20, dapp, smart contract, decentralized, metamask, zksnark, zero knowledge'
+          'Tornado, TornadoCash, Tornado Cash Official, Ethereum, ERC20, dapp, smart contract, secure, anonymous, private, decentralized, metamask, zksnark, zero knowledge'
       }
     ],
     link: [

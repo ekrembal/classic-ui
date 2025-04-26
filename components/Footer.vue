@@ -61,6 +61,14 @@
                 <b-button
                   tag="a"
                   type="is-icon"
+                  href="https://codeberg.org/torndao/classic-ui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  icon-right="git"
+                ></b-button>
+                <b-button
+                  tag="a"
+                  type="is-icon"
                   href="https://github.com/tornadocash"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -117,13 +125,7 @@ export default {
     ...mapGetters('metamask', ['networkConfig', 'netId']),
     ...mapGetters('txHashKeeper', ['addressExplorerUrl']),
     duneLink() {
-      const mainnetNetworks = [1, 5]
-
-      if (mainnetNetworks.includes(Number(this.netId))) {
-        return 'https://dune.com/davidcaviar/tornado-cash'
-      }
-
-      return 'https://dune.com/stakingbutterfly/tornado-cash-staking'
+      return 'https://dune.com/davidcaviar/tornado-cash'
     },
     locales() {
       return this.$i18n.availableLocales

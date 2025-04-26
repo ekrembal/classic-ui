@@ -292,7 +292,15 @@ export const actions = {
     }
     let statuses = await Promise.all(requests)
 
-    statuses = statuses.filter((status) => status.isValid)
+    // Filter out invalid and duplicate relayers
+    statuses = Object.values(
+      statuses
+        .filter((item) => item.isValid)
+        .reduce((statuses, item) => {
+          statuses[item.address] = item // Filter duplicates by relayer's address
+          return statuses
+        }, {})
+    ).sort((a, b) => a.name.localeCompare(b.name)) // sort by relayer's ens
     // const validRelayerENSnames = statuses.map((relayer) => relayer.name)
     commit('SAVE_VALIDATED_RELAYERS', statuses)
     console.log('filtered statuses ', statuses)

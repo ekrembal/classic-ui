@@ -25,6 +25,10 @@ export default {
         name: 'mevblockerRPC',
         url: 'https://rpc.mevblocker.io'
       },
+      tornadoRPC: {
+        name: 'Tornado RPC',
+        url: 'https://tornadocash-rpc.com/mainnet'
+      },
       poktRPC: {
         name: 'poktRPC',
         url: 'https://eth-pokt.nodies.app'
@@ -158,6 +162,10 @@ export default {
       bnbRPC: {
         name: 'bnbRPC',
         url: 'https://bsc-dataseed.bnbchain.org'
+      },
+      tornadoRPC: {
+        name: 'Tornado RPC',
+        url: 'https://tornadocash-rpc.com/bsc'
       },
       defibitRPC: {
         name: 'defibitRPC',

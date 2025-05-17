@@ -300,7 +300,7 @@ export const actions = {
           statuses[item.address] = item // Filter duplicates by relayer's address
           return statuses
         }, {})
-    ).sort((a, b) => a.name.localeCompare(b.name)) // sort by relayer's ens
+    ).sort((a, b) => new BN(b.stakeBalance).comparedTo(new BN(a.stakeBalance))) // sort by relayer's stakeBalance
     // const validRelayerENSnames = statuses.map((relayer) => relayer.name)
     commit('SAVE_VALIDATED_RELAYERS', statuses)
     console.log('filtered statuses ', statuses)

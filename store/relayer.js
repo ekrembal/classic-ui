@@ -297,7 +297,7 @@ export const actions = {
       statuses
         .filter((item) => item.isValid)
         .reduce((statuses, item) => {
-          statuses[item.address] = item // Filter duplicates by relayer's address
+          statuses[item.name] = item // Filter duplicates by relayer's ENS
           return statuses
         }, {})
     ).sort((a, b) => new BN(b.stakeBalance).comparedTo(new BN(a.stakeBalance))) // sort by relayer's stakeBalance

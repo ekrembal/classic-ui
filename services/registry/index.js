@@ -201,7 +201,7 @@ class RelayerRegister {
         registerRelayerEvents = await this.batchFetchEvents({ fromBlock, toBlock })
         lastSyncBlock = toBlock
       } else {
-        toBlock = fromBlock + blockRange
+        toBlock = currentBlockNumber // Fix toBlock greater than the latest blocknumber
         registerRelayerEvents = await this.fetchEvents({ fromBlock, toBlock }, true)
         lastSyncBlock = toBlock
       }

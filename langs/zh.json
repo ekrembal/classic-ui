@@ -445,5 +445,6 @@
     "name": "名",
     "fee": "费用"
   },
-  "withdrawalQueueIsOverloaded": "提款队列已超载"
+  "withdrawalQueueIsOverloaded": "提款队列已超载",
+  "freezeRisk": "{currency}是中心化代币，存在冻结风险。"
 }

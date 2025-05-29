@@ -441,5 +441,6 @@
     "name": "İsim",
     "fee": "Ücret"
   },
-  "withdrawalQueueIsOverloaded": "Çekim kuyruğu aşırı yoğun"
+  "withdrawalQueueIsOverloaded": "Çekim kuyruğu aşırı yoğun",
+  "freezeRisk": "{currency} merkezileştirilmiş bir token olup dondurulma riski taşır."
 }

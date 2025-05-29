@@ -445,5 +445,6 @@
     "name": "Name",
     "fee": "Fee"
   },
-  "withdrawalQueueIsOverloaded": "Withdrawal queue is overloaded"
+  "withdrawalQueueIsOverloaded": "Withdrawal queue is overloaded",
+  "freezeRisk": "{currency} - это централизованный токен с риском заморозки."
 }

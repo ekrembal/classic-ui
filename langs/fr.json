@@ -441,5 +441,6 @@
     "name": "Name",
     "fee": "Fee"
   },
-  "withdrawalQueueIsOverloaded": "Withdrawal queue is overloaded"
+  "withdrawalQueueIsOverloaded": "Withdrawal queue is overloaded",
+  "freezeRisk": "{currency} est un jeton centralisé avec un risque de gel."
 }

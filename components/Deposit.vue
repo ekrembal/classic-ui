@@ -52,7 +52,7 @@
       type="is-primary is-fullwidth"
       :loading="isDepositBtnClicked"
       data-test="button_deposit"
-      @click="onDeposit"
+      @click="onPreDeposit"
     >
       {{ $t('depositButton') }}
     </b-button>
@@ -65,6 +65,7 @@ import { mapGetters } from 'vuex'
 import ApproveModalBox from '@/components/ApproveModalBox'
 import BalanceModalBox from '@/components/BalanceModalBox'
 import DepositModalBox from '@/components/DepositModalBox'
+import RiskModalBox from '@/components/RiskModalBox'
 
 import { ConnectButton } from '@/components/web3Connect'
 
@@ -194,6 +195,19 @@ export default {
         approveModal.$on('close', onApproval)
       }
       this.isDepositBtnClicked = false
+    },
+    onPreDeposit() {
+      if (this.selectedToken.toUpperCase() === 'USDT' || this.selectedToken.toUpperCase() === 'USDC') {
+        const riskModal = this.$buefy.modal.open({
+          parent: this,
+          component: RiskModalBox,
+          hasModalCard: true,
+          width: 440
+        })
+        riskModal.$on('close', this.onDeposit)
+      } else {
+        this.onDeposit()
+      }
     }
   }
 }

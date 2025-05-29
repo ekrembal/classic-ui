@@ -476,5 +476,6 @@
     "notification": "Due to the {issue} with eth.link domain, we highly recommend avoiding using this gateway. Consider {alternative} gateways.",
     "issue": "issue",
     "alternative": "alternative"
-  }
+  },
+  "freezeRisk": "{currency} is a centralized token with the risk of freezing."
 }

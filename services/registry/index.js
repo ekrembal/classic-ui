@@ -133,11 +133,9 @@ class RelayerRegister {
   }
 
   getCachedData = async () => {
-    let blockFrom = REGISTRY_DEPLOYED_BLOCK[1]
+    const blockFrom = REGISTRY_DEPLOYED_BLOCK[1]
 
     try {
-      const blockTo = await this.provider.getBlockNumber()
-
       const cachedEvents = await this.$indexedDB.getAll({
         storeName: 'register_events'
       })
@@ -148,8 +146,9 @@ class RelayerRegister {
         storeName: 'lastEvents'
       })
 
+      let blockTo = blockFrom
       if (lastBlock) {
-        blockFrom = blockTo >= lastBlock.blockNumber ? lastBlock.blockNumber + 1 : blockTo
+        blockTo = lastBlock.blockNumber + 1
       }
 
       return { blockFrom, blockTo, cachedEvents }
@@ -171,9 +170,9 @@ class RelayerRegister {
     const blockRange = 10000
     // eslint-disable-next-line prefer-const
     let { blockFrom, blockTo, cachedEvents } = await this.getCachedData()
-    let allRelayers = cachedEvents
-
+    let firstFetch = false
     if (!cachedEvents || !cachedEvents.length) {
+      firstFetch = true // Get all relayers from the subgraph for the first time
       const { lastSyncBlock, events } = await graph.getAllRegisters(blockFrom)
 
       if (events.length) {
@@ -184,6 +183,7 @@ class RelayerRegister {
         }))
       }
     }
+    let allRelayers = cachedEvents
 
     const currentBlockNumber = await this.provider.getBlockNumber()
     const fromBlock = cachedEvents.length === 0 ? REGISTRY_DEPLOYED_BLOCK[1] : blockTo
@@ -191,26 +191,27 @@ class RelayerRegister {
 
     try {
       let toBlock
-      let registerRelayerEvents
+      let registerRelayerEvents = cachedEvents
       let lastSyncBlock = blockTo
 
-      if (blockDifference <= 0) {
-        return cachedEvents
-      } else if (blockDifference >= blockRange) {
-        toBlock = currentBlockNumber
-        registerRelayerEvents = await this.batchFetchEvents({ fromBlock, toBlock })
-        lastSyncBlock = toBlock
-      } else {
-        toBlock = currentBlockNumber // Fix toBlock greater than the latest blocknumber
-        registerRelayerEvents = await this.fetchEvents({ fromBlock, toBlock }, true)
-        lastSyncBlock = toBlock
+      if (!firstFetch) {
+        if (blockDifference <= 0) {
+          return cachedEvents
+        } else if (blockDifference >= blockRange) {
+          toBlock = currentBlockNumber
+          registerRelayerEvents = await this.batchFetchEvents({ fromBlock, toBlock })
+          lastSyncBlock = toBlock
+        } else {
+          toBlock = currentBlockNumber // Fix toBlock greater than the latest blocknumber
+          registerRelayerEvents = await this.fetchEvents({ fromBlock, toBlock }, true)
+          lastSyncBlock = toBlock
+        }
       }
 
-      const relayerEvents = cachedEvents.concat(registerRelayerEvents || [])
       const events = []
 
-      for (let x = 0; x < relayerEvents.length; x++) {
-        const { ensName, relayerAddress } = relayerEvents[x]
+      for (let x = 0; x < registerRelayerEvents.length; x++) {
+        const { ensName, relayerAddress } = registerRelayerEvents[x]
         let ensAddress
 
         if (!isAddress(relayerAddress)) {
@@ -223,9 +224,12 @@ class RelayerRegister {
         events.push({ ensName, relayerAddress: ensAddress })
       }
 
-      await this.saveEvents({ storeName: 'register_events', lastSyncBlock, events })
-
-      allRelayers = allRelayers.concat(events)
+      if (firstFetch) {
+        allRelayers = events
+      } else {
+        allRelayers = allRelayers.concat(events)
+      }
+      await this.saveEvents({ storeName: 'register_events', lastSyncBlock, events: allRelayers })
     } catch (err) {
       console.log(err)
     }

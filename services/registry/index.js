@@ -171,7 +171,10 @@ class RelayerRegister {
     // eslint-disable-next-line prefer-const
     let { blockFrom, blockTo, cachedEvents } = await this.getCachedData()
     let firstFetch = false
-    if (!cachedEvents || !cachedEvents.length) {
+    // There are 114 relayers in total so far,
+    // If there are less than 114 in the cache,
+    // It means that the historical data is incorrect and needs to be re-fetch through the subgraph
+    if (!cachedEvents || !cachedEvents.length || cachedEvents.length < 114) {
       firstFetch = true // Get all relayers from the subgraph for the first time
       const { lastSyncBlock, events } = await graph.getAllRegisters(blockFrom)
 

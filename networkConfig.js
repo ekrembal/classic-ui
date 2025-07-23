@@ -21,33 +21,29 @@ export default {
     networkName: 'Ethereum Mainnet',
     deployedBlock: 9116966,
     rpcUrls: {
-      mevblockerRPC: {
-        name: 'mevblockerRPC',
-        url: 'https://rpc.mevblocker.io'
+      flashbotRPC: {
+        name: 'flashbotRPC',
+        url: 'https://rpc.flashbots.net'
       },
       tornadoRPC: {
         name: 'Tornado RPC',
         url: 'https://tornadocash-rpc.com/mainnet'
       },
-      poktRPC: {
-        name: 'poktRPC',
-        url: 'https://eth-pokt.nodies.app'
+      blockscoutRPC: {
+        name: 'blockscoutRPC',
+        url: 'https://eth.blockscout.com/api/eth-rpc'
       },
-      secureRPC: {
-        name: 'secureRPC',
-        url: 'https://api.securerpc.com/v1'
+      kyberRPC: {
+        name: 'kyberRPC',
+        url: 'https://ethereum-mev-protection.kyberengineering.io'
       },
-      flashbotRPC: {
-        name: 'flashbotRPC',
-        url: 'https://rpc.flashbots.net'
+      gasHawkRPC: {
+        name: 'GasHawkRPC',
+        url: 'https://core.gashawk.io/rpc'
       },
-      blockpiRPC: {
-        name: 'blockpiRPC',
-        url: 'https://ethereum.blockpi.network/v1/rpc/public'
-      },
-      publicRPC: {
-        name: 'publicRPC',
-        url: 'https://ethereum-rpc.publicnode.com'
+      lavaRPC: {
+        name: 'lavaRPC',
+        url: 'https://eth1.lava.build'
       }
     },
     multicall: '0xeefba1e63905ef1d7acba5a8513c70307c1ce441',

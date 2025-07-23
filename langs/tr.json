@@ -138,7 +138,7 @@
   "compliance": "Uyumluluk",
   "complianceTool": "uyumluluk aracı",
   "complianceReport": "Uyumluluk Raporu",
-  "complianceSubtitle": "Finansal gizliliği korumak, özgürlüğümüzü korumak için çok önemlidir.{newline}Ancak, uyumsuzluk pahasına olmamalıdır. Tornado Cash ile,para yatırmak veya para çekmek için kullandığınız Ethereum adresini kullanarak her zaman kriptografik olarak doğrulanmış işlem geçmişi kanıtını sağlayabilirsiniz. Çekim adresinizde tutulan varlıkların kaynağını göstermek için gerekli olabilir.{newline}Bir uygunluk raporu oluşturmak için lütfen aşağıya Tornado.сash Notunuzu girin.",
+  "complianceSubtitle": "Finansal gizliliği korumak, özgürlüğümüzü korumak için çok önemlidir.{newline}Ancak, uyumsuzluk pahasına olmamalıdır. Tornado Cash ile,para yatırmak veya para çekmek için kullandığınız Ethereum adresini kullanarak her zaman kriptografik olarak doğrulanmış işlem geçmişi kanıtını sağlayabilirsiniz. Çekim adresinizde tutulan varlıkların kaynağını göstermek için gerekli olabilir.{newline}Bir uygunluk raporu oluşturmak için lütfen aşağıya Tornado Cash Notunuzu girin.",
   "from": "Kimden",
   "to": "Kime",
   "withdrawal": "Çekim",

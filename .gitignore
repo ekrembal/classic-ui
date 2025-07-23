@@ -93,3 +93,4 @@ static/*/*.json
 
 # UI build archive
 dist.zip
+package-lock.json

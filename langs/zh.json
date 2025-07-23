@@ -138,7 +138,7 @@
   "compliance": "来源证明",
   "complianceTool": "来源证明工具",
   "complianceReport": "来源证明报告",
-  "complianceSubtitle": "维护财务隐私对于保全我们的自由至关重要。{newline}但是，它不应该以违规为代价。 借助Tornado Cash，您始终可以使用您存/取款的地址提供经过加密验证的交易历史证明。 这将会显示您的提款地址的资产来源。{newline}要生成资产来源报告，请在下面输入您的 Tornado.сash存款凭证。",
+  "complianceSubtitle": "维护财务隐私对于保全我们的自由至关重要。{newline}但是，它不应该以违规为代价。 借助Tornado Cash，您始终可以使用您存/取款的地址提供经过加密验证的交易历史证明。 这将会显示您的提款地址的资产来源。{newline}要生成资产来源报告，请在下面输入您的Tornado Cash存款凭证。",
   "from": "从",
   "to": "到",
   "withdrawal": "提款",

@@ -138,7 +138,7 @@
   "compliance": "Conformité",
   "complianceTool": "outil de conformité",
   "complianceReport": "Rapport de Conformité",
-  "complianceSubtitle": "Maintaining financial privacy is essential to preserving our freedom.{newline}However, it should not come at the cost of non-compliance. With Tornado Cash, you can always provide cryptographically verified proof of transactional history using the Ethereum address you used to deposit or withdraw funds. This might be necessary to show the source of assets held in your withdrawal address.{newline}To generate a compliance report, please enter your Tornado.сash Note below.",
+  "complianceSubtitle": "Maintaining financial privacy is essential to preserving our freedom.{newline}However, it should not come at the cost of non-compliance. With Tornado Cash, you can always provide cryptographically verified proof of transactional history using the Ethereum address you used to deposit or withdraw funds. This might be necessary to show the source of assets held in your withdrawal address.{newline}To generate a compliance report, please enter your Tornado Cash Note below.",
   "from": "De",
   "to": "À",
   "withdrawal": "Retrait",

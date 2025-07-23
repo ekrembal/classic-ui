@@ -9,12 +9,11 @@ function main() {
   const IPFS_LOCAL_REGEXP = /.ipfs.localhost:/
   const IPFS_SOP_GATEWAY_REGEXP = /\/ipfs\//
 
-  if (IPFS_LOCAL_REGEXP.test(window.location.host)) {
+  if (IPFS_LOCAL_REGEXP.test(window.location.host) || whiteListedDomains.includes(window.location.host)) {
     return false
   } else if (
     IPFS_GATEWAY_REGEXP.test(window.location.host) ||
-    IPFS_SOP_GATEWAY_REGEXP.test(window.location.host) ||
-    whiteListedDomains.includes(window.location.host)
+    IPFS_SOP_GATEWAY_REGEXP.test(window.location.host)
   ) {
     console.warn('The page has been loaded from ipfs.io. LocalStorage is disabled')
     return true

@@ -220,6 +220,10 @@ const getters = {
   isArbitrumConnected: (state, getters, rootState, rootGetters) => {
     const netId = rootGetters['metamask/netId']
     return Number(netId) === 42161
+  },
+  isCitreaConnected: (state, getters, rootState, rootGetters) => {
+    const netId = rootGetters['metamask/netId']
+    return Number(netId) === 5115
   }
 }
 

@@ -562,6 +562,17 @@ const actions = {
         },
         blockExplorerUrls: ['https://arbiscan.io']
       },
+      5115: {
+        chainId: '0x13FB',
+        chainName: 'Citrea Testnet',
+        rpcUrls: ['https://rpc.testnet.citrea.xyz'],
+        nativeCurrency: {
+          name: 'cBTC',
+          symbol: 'cBTC',
+          decimals: 18
+        },
+        blockExplorerUrls: ['https://explorer.testnet.citrea.xyz']
+      },
       43114: {
         chainId: '0xA86A',
         chainName: 'Avalanche C-Chain',

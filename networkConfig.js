@@ -1,5 +1,5 @@
 export const blockSyncInterval = 10000
-export const enabledChains = ['1', '10', '56', '61', '100', '137', '42161', '43114', '11155111']
+export const enabledChains = ['1', '10', '56', '61', '100', '137', '42161', '43114', '11155111', '5115']
 export default {
   netId1: {
     rpcCallRetryAttempt: 15,
@@ -640,5 +640,49 @@ export default {
     'torn.contract.tornadocash.eth': '0x3AE6667167C0f44394106E197904519D808323cA',
     'governance.contract.tornadocash.eth': '0xe5324cD7602eeb387418e594B87aCADee08aeCAD',
     'tornado-router.contract.tornadocash.eth': '0x1572AFE6949fdF51Cb3E0856216670ae9Ee160Ee'
+  },
+  netId5115: {
+    rpcCallRetryAttempt: 15,
+    gasPrices: {
+      instant: 225,
+      fast: 35,
+      standard: 25,
+      low: 25
+    },
+    nativeCurrency: 'cBTC',
+    currencyName: 'cBTC',
+    explorerUrl: {
+      tx: 'https://explorer.testnet.citrea.xyz/tx/',
+      address: 'https://explorer.testnet.citrea.xyz/address/',
+      block: 'https://explorer.testnet.citrea.xyz/block/'
+    },
+    merkleTreeHeight: 20,
+    emptyElement: '21663839004416932945382355908790599225266501822907911457504978515578255421292',
+    networkName: 'Citrea Testnet',
+    deployedBlock: 14956464,
+    multicall: '0xe86e3989c74293Acc962156cd3F525c07b6a1B6e',
+    echoContractAccount: '0xa75BF2815618872f155b7C4B0C81bF990f5245E4',
+    rpcUrls: {
+      avaxRpc: {
+        name: 'Citrea RPC',
+        url: 'https://rpc.testnet.citrea.xyz'
+      }
+    },
+    tokens: {
+      avax: {
+        instanceAddress: {
+          '0.001': '0x5D53F750359CE95d4573daac3e4cE711f4CA666B'
+        },
+        symbol: 'cBTC',
+        decimals: 18
+      }
+    },
+    ensSubdomainKey: 'citrea-tornado',
+    pollInterval: 10,
+    constants: {
+      NOTE_ACCOUNT_BLOCK: 14956464,
+      ENCRYPTED_NOTES_BLOCK: 14956464
+    },
+    'tornado-proxy-light.contract.tornadocash.eth': '0x0D5550d52428E7e3175bfc9550207e4ad3859b17'
   }
 }

@@ -169,7 +169,11 @@ const actions = {
 
       dispatch('loading/showConfirmLoader', {}, { root: true })
 
+      console.log('sendTransaction callParams', callParams)
+
       const txHash = await this.$provider.sendRequest(callParams)
+
+      console.log('Transaction hash', txHash)
 
       dispatch(
         'loading/changeText',

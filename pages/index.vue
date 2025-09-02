@@ -36,7 +36,6 @@
           <Withdraw :active-tab="activeTab" @get-key="onGetKey" />
         </b-tabs>
       </div>
-      <Statistics />
     </div>
     <Txs />
   </div>
@@ -47,7 +46,6 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Txs from '@/components/Txs'
 import Deposit from '@/components/Deposit'
-import Statistics from '@/components/Statistics'
 import Withdraw from '@/components/withdraw/Withdraw'
 
 export default {
@@ -55,8 +53,7 @@ export default {
   components: {
     Txs,
     Deposit,
-    Withdraw,
-    Statistics
+    Withdraw
   },
   data() {
     return {

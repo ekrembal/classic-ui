@@ -27,8 +27,6 @@ export default {
           return 'Avalanche'
         case 11155111:
           return 'Sepolia'
-        case 5115:
-          return 'Citrea'
         default:
           return this.networkName
       }

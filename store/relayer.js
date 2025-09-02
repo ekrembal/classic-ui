@@ -14,48 +14,48 @@ const getAxios = () => {
   return import('axios')
 }
 
-const calculateScore = ({ stakeBalance, tornadoServiceFee }, minFee = 0.33, maxFee = 0.53) => {
-  if (tornadoServiceFee < minFee) {
-    tornadoServiceFee = minFee
-  } else if (tornadoServiceFee >= maxFee) {
-    return new BN(0)
-  }
+// // const calculateScore = ({ stakeBalance, tornadoServiceFee }, minFee = 0.33, maxFee = 0.53) => {
+// //   if (tornadoServiceFee < minFee) {
+// //     tornadoServiceFee = minFee
+// //   } else if (tornadoServiceFee >= maxFee) {
+// //     return new BN(0)
+// //   }
 
-  const serviceFeeCoefficient = (tornadoServiceFee - minFee) ** 2
-  const feeDiffCoefficient = 1 / (maxFee - minFee) ** 2
-  const coefficientsMultiplier = 1 - feeDiffCoefficient * serviceFeeCoefficient
+//   const serviceFeeCoefficient = (tornadoServiceFee - minFee) ** 2
+//   const feeDiffCoefficient = 1 / (maxFee - minFee) ** 2
+//   const coefficientsMultiplier = 1 - feeDiffCoefficient * serviceFeeCoefficient
 
-  return new BN(stakeBalance).multipliedBy(coefficientsMultiplier)
-}
+//   return new BN(stakeBalance).multipliedBy(coefficientsMultiplier)
+// }
 
-const getWeightRandom = (weightsScores, random) => {
-  for (let i = 0; i < weightsScores.length; i++) {
-    if (random.isLessThan(weightsScores[i])) {
-      return i
-    }
-    random = random.minus(weightsScores[i])
-  }
-  return Math.floor(Math.random() * weightsScores.length)
-}
+// const getWeightRandom = (weightsScores, random) => {
+//   for (let i = 0; i < weightsScores.length; i++) {
+//     if (random.isLessThan(weightsScores[i])) {
+//       return i
+//     }
+//     random = random.minus(weightsScores[i])
+//   }
+//   return Math.floor(Math.random() * weightsScores.length)
+// }
 
-const pickWeightedRandomRelayer = (items, netId) => {
-  let minFee, maxFee
+// const pickWeightedRandomRelayer = (items, netId) => {
+//   let minFee, maxFee
 
-  if (netId !== 1) {
-    minFee = 0.01
-    maxFee = 0.3
-  }
+//   if (netId !== 1) {
+//     minFee = 0.01
+//     maxFee = 0.3
+//   }
 
-  const weightsScores = items.map((el) => calculateScore(el, minFee, maxFee))
-  const totalWeight = weightsScores.reduce((acc, curr) => {
-    return (acc = acc.plus(curr))
-  }, new BN('0'))
+//   const weightsScores = items.map((el) => calculateScore(el, minFee, maxFee))
+//   const totalWeight = weightsScores.reduce((acc, curr) => {
+//     return (acc = acc.plus(curr))
+//   }, new BN('0'))
 
-  const random = totalWeight.multipliedBy(Math.random())
-  const weightRandomIndex = getWeightRandom(weightsScores, random)
+//   const random = totalWeight.multipliedBy(Math.random())
+//   const weightRandomIndex = getWeightRandom(weightsScores, random)
 
-  return items[weightRandomIndex]
-}
+//   return items[weightRandomIndex]
+// }
 
 const initialJobsState = createChainIdState({
   tornado: {}
@@ -279,12 +279,14 @@ export const actions = {
     return result
   },
   async pickRandomRelayer({ rootGetters, commit, dispatch, getters }) {
-    const netId = rootGetters['metamask/netId']
+    // const netId = rootGetters['metamask/netId']
     const { ensSubdomainKey } = rootGetters['metamask/networkConfig']
 
     commit('SET_IS_LOADING_RELAYERS', true)
 
     const registeredRelayers = await relayerRegisterService(getters.ethProvider).getRelayers(ensSubdomainKey)
+
+    console.log('registeredRelayers', registeredRelayers)
 
     const requests = []
     for (const registeredRelayer of registeredRelayers) {
@@ -306,14 +308,20 @@ export const actions = {
     console.log('filtered statuses ', statuses)
 
     try {
-      const {
-        name,
-        realUrl,
-        address,
-        ethPrices,
-        stakeBalance,
-        tornadoServiceFee
-      } = pickWeightedRandomRelayer(statuses, netId)
+      // const {
+      //   name,
+      //   realUrl,
+      //   address,
+      //   ethPrices,
+      //   stakeBalance,
+      //   tornadoServiceFee
+      // } = pickWeightedRandomRelayer(statuses, netId)
+      const name = 'citrea'
+      const realUrl = 'http://35.174.145.94:80/'
+      const address = '0xf2f8e402b194864319f9067ebe11ca7ccd6c7c52'
+      const ethPrices = { torn: '1' }
+      const stakeBalance = 0
+      const tornadoServiceFee = 0
 
       console.log('Selected relayer', name, tornadoServiceFee)
       commit('SET_SELECTED_RELAYER', {

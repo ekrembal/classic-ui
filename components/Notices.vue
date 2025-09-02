@@ -26,7 +26,7 @@
         data-test="popup_message"
         rel="noopener noreferrer"
       >
-        {{ $t('viewOnEtherscan') }}
+        {{ $t('viewInExplorer') }}
       </a>
       <n-link v-else-if="notice.routerLink" v-bind="notice.routerLink.params" @onClick="$forceUpdate()">
         {{ $t(notice.routerLink.title) }}

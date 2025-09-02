@@ -22,11 +22,8 @@ import {
   buffPedersenHash
 } from '@/utils'
 
-import { buildGroth16, download, getTornadoKeys } from './snark'
+import { download } from './snark'
 
-let groth16
-
-const websnarkUtils = require('@tornado/websnark/src/utils')
 const { toWei, numberToHex, toBN, isAddress } = require('web3-utils')
 
 const getStatisticStore = (acc, { tokens }) => {
@@ -58,7 +55,7 @@ const state = () => {
     ip: {},
     selectedInstance: { currency: 'eth', amount: 0.1 },
     selectedStatistic: { currency: 'eth', amount: 0.1 },
-    withdrawType: 'relayer',
+    withdrawType: 'wallet',
     ethToReceive: '20000000000000000',
     defaultEthToReceive: '20000000000000000',
     withdrawNote: ''
@@ -695,16 +692,40 @@ const actions = {
         nullifier: note.nullifier
       }
 
-      const { circuit, provingKey } = await getTornadoKeys()
-
-      if (!groth16) {
-        groth16 = await buildGroth16()
-      }
-
       console.log('Start generating SNARK proof', input)
       console.time('SNARK proof time')
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, provingKey)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      // const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, provingKey)
+      // const { proof } = websnarkUtils.toSolidityInput(proofData)
+
+      // Create groth16 proof for witness
+      const { proof: groth16Proof } = await window.snarkjs.groth16.fullProve(
+        input,
+        './withdraw.wasm',
+        './withdraw_final.zkey'
+      )
+
+      const pA = groth16Proof.pi_a.slice(0, 2)
+      const pB = groth16Proof.pi_b.slice(0, 2)
+      const pC = groth16Proof.pi_c.slice(0, 2)
+
+      // const bigintToHex = (number, length = 32) => '0x' + number.toString(16).padStart(length * 2, '0')
+
+      // Return abi encoded witness
+      const proof = window.ethers.AbiCoder.defaultAbiCoder().encode(
+        ['uint256[2]', 'uint256[2][2]', 'uint256[2]', 'bytes32', 'bytes32'],
+        [
+          pA,
+          // Swap x coordinates: this is for proof verification with the Solidity precompile for EC Pairings, and not required
+          // for verification with e.g. snarkJS.
+          [
+            [pB[0][1], pB[0][0]],
+            [pB[1][1], pB[1][0]]
+          ],
+          pC,
+          toFixedHex(root),
+          toFixedHex(note.nullifierHash)
+        ]
+      )
 
       const args = [
         toFixedHex(input.root),
@@ -724,7 +745,7 @@ const actions = {
     relayer = BigInt(rootState.relayer.selectedRelayer.address)
     fee = BigInt(rootState.fees.withdrawalFeeViaRelayer)
     const naiveProof = await calculateSnarkProof()
-    if (Number(note.netId) === 1) return naiveProof // Don't need to smart-estimate fee if we use V4 withdrawal
+    if (Number(note.netId) === 5115) return naiveProof // Don't need to smart-estimate fee if we use V4 withdrawal
 
     const { proof: dummyProof, args: dummyArgs } = naiveProof
     const withdrawalTx = getters.relayerWithdrawalTxData({
@@ -786,11 +807,11 @@ const actions = {
         to: contractInstance._address,
         from: ethAccount
       }
-      const gasLimit = await rootGetters['fees/oracle'].getGasLimit(incompletedTx, 'other', 20)
+      // const gasLimit = await rootGetters['fees/oracle'].getGasLimit(incompletedTx, 'other', 20)
 
       const callParams = {
         method: 'eth_sendTransaction',
-        params: Object.assign({ gas: numberToHex(gasLimit) }, incompletedTx),
+        params: Object.assign({ gas: '0x7A1200' }, incompletedTx),
         watcherParams: {
           title: { path: 'withdrawing', amount, currency },
           successTitle: {
@@ -806,7 +827,10 @@ const actions = {
         isSaving: false
       }
 
-      await dispatch('metamask/sendTransaction', callParams, { root: true })
+      console.log('withdraw callParams', callParams)
+
+      const txHash = await dispatch('metamask/sendTransaction', callParams, { root: true })
+      console.log('withdrawal txHash', txHash)
     } catch (e) {
       console.error(e)
       throw new Error(e.message)

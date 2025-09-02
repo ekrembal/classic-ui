@@ -78,6 +78,12 @@ class EventService {
       }
       return a.blockNumber - b.blockNumber
     })
+    if (!allEvents.length) {
+      return {
+        events: [],
+        lastBlock: ''
+      }
+    }
     const lastBlock = allEvents[allEvents.length - 1].blockNumber
 
     this.saveEvents({ events: allEvents, lastBlock, type })
@@ -436,6 +442,8 @@ class EventService {
       }
 
       const instanceName = this.getInstanceName(type)
+      console.log(`instanceName`, instanceName)
+      console.log(`events to save`, events)
 
       await this.idb.createMultipleTransactions({
         data: events,

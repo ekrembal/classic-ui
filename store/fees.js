@@ -4,7 +4,7 @@ import { TornadoFeeOracleV4, TornadoFeeOracleV5 } from '@tornado/tornado-oracles
 
 export const state = () => {
   return {
-    gasPriceParams: { gasPrice: toWei(toBN(50), 'gwei') },
+    gasPriceParams: { gasPrice: toWei(toBN(50), 'gwei'), maxFeePerGas: toWei(toBN(10), 'gwei') },
     withdrawalNetworkFee: toBN(0),
     withdrawalFeeViaRelayer: toBN(0)
   }
@@ -25,7 +25,8 @@ export const getters = {
     return state.gasPriceParams
   },
   gasPrice: (state, getters) => {
-    const { gasPrice, maxFeePerGas } = getters.getGasPriceParams
+    const { gasPrice } = getters.getGasPriceParams
+    const maxFeePerGas = toWei(toBN(10), 'gwei')
     return maxFeePerGas || gasPrice
   },
   gasPriceInGwei: (state, getters) => {

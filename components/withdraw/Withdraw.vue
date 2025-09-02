@@ -144,7 +144,6 @@
 <script>
 /* eslint-disable no-console */
 import { mapState, mapGetters } from 'vuex'
-import { getTornadoKeys } from '@/store/snark'
 
 import { parseNote } from '@/utils'
 import { DONATIONS_ADDRESS } from '@/constants'
@@ -381,12 +380,11 @@ export default {
     })
   },
   methods: {
-    async getKeys() {
+    getKeys() {
       try {
         this.isFileError = false
         this.isLoading = true
         this.getProgress(0)
-        await getTornadoKeys(this.getProgress)
         return true
       } catch (err) {
         console.error('getKeys has error:', err.message)

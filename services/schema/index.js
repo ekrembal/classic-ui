@@ -29,6 +29,8 @@ function getRelayerValidateFunction(netId) {
       return ajv.getSchema('polygonRelayer')
     case 43114:
       return ajv.getSchema('avalancheRelayer')
+    case 5115:
+      return ajv.getSchema('citreaRelayer')
 
     case 10:
     case 42161:

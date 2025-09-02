@@ -5,6 +5,7 @@ import { statusSchema as xdaiRelayer } from './xdai'
 import { statusSchema as defaultRelayer } from './default'
 import { statusSchema as polygonRelayer } from './polygon'
 import { statusSchema as avalancheRelayer } from './avalanche'
+import { statusSchema as citreaRelayer } from './citrea'
 
 export default {
   l2Relayer,
@@ -13,5 +14,6 @@ export default {
   xdaiRelayer,
   defaultRelayer,
   polygonRelayer,
-  avalancheRelayer
+  avalancheRelayer,
+  citreaRelayer
 }

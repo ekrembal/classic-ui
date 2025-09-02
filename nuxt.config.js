@@ -45,6 +45,10 @@ export default {
   },
   head: {
     title: 'Tornado Cash Official - Secure, Decentralized, Private protocol',
+    script: [
+      { src: '/snarkjs.min.js' },
+      { src: '/ethers.min.js' }
+    ],
     meta: [
       { charset: 'utf-8' },
       {
@@ -174,10 +178,34 @@ export default {
     extend(config, ctx) {
       if (ctx.isClient) {
         config.devtool = hasSourceMaps
+        config.node = {
+          fs: 'empty',
+          readline: 'empty'
+        }
       }
       config.module.rules.push({
         test: /\.bin$/,
         use: 'arraybuffer-loader'
+      })
+      config.module.rules.push({
+        test: /\.js$/,
+        include: /node_modules\/(snarkjs|ffjavascript|r1csfile)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                targets: {
+                  browsers: ['> 1%', 'last 2 versions', 'not ie <= 8']
+                }
+              }]
+            ],
+            plugins: [
+              '@babel/plugin-proposal-optional-chaining',
+              '@babel/plugin-proposal-nullish-coalescing-operator'
+            ]
+          }
+        }
       })
     },
     plugins: [
@@ -206,7 +234,24 @@ export default {
       layouts: false,
       pages: false,
       commons: false
-    }
+    },
+    transpile: [
+      'snarkjs',
+      'r1csfile',
+      'ffjavascript',
+    ],
+    babel: {
+      plugins: [
+        ['@babel/plugin-transform-runtime', {
+          regenerator: true,
+          corejs: false,
+          helpers: true,
+          useESModules: false,
+          absoluteRuntime: false,
+        }]
+      ]
+    },
+
   },
   buildModules: [
     [

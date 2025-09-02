@@ -250,7 +250,7 @@
   "delegating": "Delegating",
   "undelegating": "Undelegating",
   "undelegated": "Undelegated",
-  "viewOnEtherscan": "View on Etherscan",
+  "viewOnEtherscan": "View on Blockscout",
   "awaitingExecution": "Awaiting Execution",
   "execute": "Execute",
   "executeProposal": "Execute proposal",

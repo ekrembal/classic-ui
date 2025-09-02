@@ -11,7 +11,7 @@ const { toChecksumAddress } = require('web3-utils')
 
 const state = () => {
   return {
-    netId: 1,
+    netId: 5115,
     walletName: '',
     ethBalance: '0',
     ethAccount: null,

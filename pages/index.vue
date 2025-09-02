@@ -30,8 +30,8 @@
     </b-notification>
 
     <div class="columns">
-      <div class="column is-half">
-        <b-tabs v-model="activeTab" class="is-tornado" :animated="false" @input="tabChanged">
+      <div class="column">
+        <b-tabs v-model="activeTab" class="is-tornado mx-auto" :animated="false" @input="tabChanged">
           <Deposit />
           <Withdraw :active-tab="activeTab" @get-key="onGetKey" />
         </b-tabs>

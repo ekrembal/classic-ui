@@ -3,9 +3,6 @@
   flex-direction: column;
   margin-bottom: 0;
 
-  @include tablet {
-    max-width: 440px;
-  }
 
   .tabs {
     font-size: 1.35rem;

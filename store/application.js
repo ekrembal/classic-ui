@@ -827,10 +827,7 @@ const actions = {
         isSaving: false
       }
 
-      console.log('withdraw callParams', callParams)
-
-      const txHash = await dispatch('metamask/sendTransaction', callParams, { root: true })
-      console.log('withdrawal txHash', txHash)
+      await dispatch('metamask/sendTransaction', callParams, { root: true })
     } catch (e) {
       console.error(e)
       throw new Error(e.message)

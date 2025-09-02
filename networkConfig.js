@@ -659,7 +659,7 @@ export default {
     merkleTreeHeight: 20,
     emptyElement: '21663839004416932945382355908790599225266501822907911457504978515578255421292',
     networkName: 'Citrea Testnet',
-    deployedBlock: 14956464,
+    deployedBlock: 14999564,
     echoContractAccount: '0x15967BFC6Fe21123c9239DAC33b7fd3baF5e7a61',
     rpcUrls: {
       citreaRpc: {
@@ -670,7 +670,7 @@ export default {
     tokens: {
       cBTC: {
         instanceAddress: {
-          '0.001': '0x5D53F750359CE95d4573daac3e4cE711f4CA666B'
+          '0.001': '0x4cB16064de3067F7489923B57584cd9CbdeB65fB'
         },
         symbol: 'cBTC',
         decimals: 18
@@ -679,8 +679,8 @@ export default {
     ensSubdomainKey: 'citrea-tornado',
     pollInterval: 10,
     constants: {
-      NOTE_ACCOUNT_BLOCK: 14956464,
-      ENCRYPTED_NOTES_BLOCK: 14956464
+      NOTE_ACCOUNT_BLOCK: 14999564,
+      ENCRYPTED_NOTES_BLOCK: 14999564
     },
     'tornado-proxy-light.contract.tornadocash.eth': '0x936b2db56aae20089b50089cF7033D9940af1460'
   }

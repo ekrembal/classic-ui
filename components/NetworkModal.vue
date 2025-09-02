@@ -37,13 +37,15 @@ export default {
     ...mapGetters('metamask', ['netId', 'isLoggedIn']),
     ...mapState('metamask', ['isInitialized']),
     networks() {
-      return Object.keys(this.networkConfig).map((key) => {
-        return {
-          name: this.networkConfig[key].networkName,
-          dataTest: `${this.networkConfig[key].networkName.split(' ').join('_')}__network`,
-          chainId: Number(key.replace('netId', ''))
-        }
-      })
+      return Object.keys(this.networkConfig)
+        .filter((key) => key !== 'netId1')
+        .map((key) => {
+          return {
+            name: this.networkConfig[key].networkName,
+            dataTest: `${this.networkConfig[key].networkName.split(' ').join('_')}__network`,
+            chainId: Number(key.replace('netId', ''))
+          }
+        })
     }
   },
   methods: {

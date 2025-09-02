@@ -507,61 +507,6 @@ const actions = {
   },
   async addNetwork(_, { netId }) {
     const METAMASK_LIST = {
-      56: {
-        chainId: '0x38',
-        chainName: 'Binance Smart Chain Mainnet',
-        rpcUrls: ['https://bscrpc.com'],
-        nativeCurrency: {
-          name: 'Binance Chain Native Token',
-          symbol: 'BNB',
-          decimals: 18
-        },
-        blockExplorerUrls: ['https://bscscan.com']
-      },
-      10: {
-        chainId: '0xa',
-        chainName: 'Optimism',
-        rpcUrls: ['https://mainnet.optimism.io/'],
-        nativeCurrency: {
-          name: 'Ether',
-          symbol: 'ETH',
-          decimals: 18
-        },
-        blockExplorerUrls: ['https://optimistic.etherscan.io']
-      },
-      100: {
-        chainId: '0x64',
-        chainName: 'Gnosis',
-        rpcUrls: ['https://rpc.gnosischain.com'],
-        nativeCurrency: {
-          name: 'xDAI',
-          symbol: 'xDAI',
-          decimals: 18
-        },
-        blockExplorerUrls: ['https://gnosisscan.io']
-      },
-      137: {
-        chainId: '0x89',
-        chainName: 'Polygon Mainnet',
-        rpcUrls: ['https://polygon-rpc.com'],
-        nativeCurrency: {
-          name: 'MATIC',
-          symbol: 'MATIC',
-          decimals: 18
-        },
-        blockExplorerUrls: ['https://polygonscan.com']
-      },
-      42161: {
-        chainId: '0xA4B1',
-        chainName: 'Arbitrum One',
-        rpcUrls: ['https://arb1.arbitrum.io/rpc'],
-        nativeCurrency: {
-          name: 'Ether',
-          symbol: 'ETH',
-          decimals: 18
-        },
-        blockExplorerUrls: ['https://arbiscan.io']
-      },
       5115: {
         chainId: '0x13FB',
         chainName: 'Citrea Testnet',
@@ -572,17 +517,6 @@ const actions = {
           decimals: 18
         },
         blockExplorerUrls: ['https://explorer.testnet.citrea.xyz']
-      },
-      43114: {
-        chainId: '0xA86A',
-        chainName: 'Avalanche C-Chain',
-        rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-        nativeCurrency: {
-          name: 'Avalanche',
-          symbol: 'AVAX',
-          decimals: 18
-        },
-        blockExplorerUrls: ['https://snowtrace.io']
       }
     }
 

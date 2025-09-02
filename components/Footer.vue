@@ -4,18 +4,6 @@
       <div class="level">
         <div class="level-left">
           <div class="level-item is-column">
-            <div class="level-subitem footer-address">
-              <div class="footer-address__name">
-                {{ $t('donationsAddress') }}
-              </div>
-              <a
-                class="footer-address__value"
-                target="_blank"
-                :href="addressExplorerUrl(donationsAddress)"
-                rel="noopener noreferrer"
-                >{{ donationsAddress }}</a
-              >
-            </div>
             <div class="level-subitem">
               Tornado Cash version:
               <span class="footer-version__value">{{ commit }}</span>
